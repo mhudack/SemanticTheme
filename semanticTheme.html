@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+	<head>
+		<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/dojo/1.4/dijit/themes/nihilo/nihilo.css" />
+
+		<title>{Title}</title>
+		<meta charset="utf-8" />
+		<link rel="shortcut icon" href="{Favicon}">
+		<link rel="alternate" type="application/rss+xml" href="{RSS}">
+        {block:Description}
+            <meta name="description" content="{MetaDescription}" />
+        {/block:Description}
+        
+        <!-- Dojo seems cool -->
+		<script src="http://ajax.googleapis.com/ajax/libs/dojo/1.4/dojo/dojo.xd.js" type="text/javascript" djConfig="parseOnLoad: true"></script>
+
+		<!-- for the Internet Exploder -->
+		<!--[if lt IE 9]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+        
+        <script type="text/javascript">
+        
+        	dojo.require("dijit.Dialog");
+        
+        	function showNotes(url,title) {        		
+        		dojo.xhrGet({
+        			url: url,
+        			load: function(data) {
+						var myDialog = new dijit.Dialog({
+							title: "Notes for " + title,
+							content: data,
+						});
+						myDialog.show();
+						window.blur();
+        				}
+        		});
+        		        		
+        		return false;
+        		
+        	}
+        </script>
+        
+		<style type="text/css">
+			body {
+				background-color: white;
+				margin-left: auto;
+				margin-right: auto;
+				font-size: 10pt;
+				font-family: Helvetica, Verdana, sans-serif;
+				width: 500px;
+				padding-bottom: 40px;
+			}
+			
+			.digitDialog {
+				background-color: #000;
+			}
+						
+			header h1 {
+				font-weight: 800;
+				margin-left: auto;
+				margin-right: auto;
+				margin-bottom: 5px;
+				width: 500px;
+			}
+			
+			header h1 a {
+				text-decoration: none;
+				color: black;
+			}
+			
+			article header h1, article header a {
+				font-weight: 800;
+				font-size: 150%;
+			}
+			
+			header #description {
+				margin-left: auto;
+				margin-right: auto;
+				width: 500px;
+				margin-top: 10px;
+				margin-bottom: 15px;
+				font-size: 90%;
+				font-style: italic;
+				border-bottom: 1px solid #eee;
+			}
+			
+			#articles {
+				width: 500px;
+				margin-top: 50px;
+			}
+			
+			article { 
+				border-bottom: 5px solid #eee;
+				margin-bottom: 40px;
+			}
+			
+			article footer {
+				margin-top: 5px;
+				margin-bottom: 5px;
+				width: 100%;
+			}
+			
+			article div {
+				margin-top: 5px;
+				margin-bottom: 15px;
+			}
+			
+			blockquote {
+				border-left: 3px solid blue;
+				padding-left: 5px;
+			}
+			
+			blockquote blockquote {
+				border-left: 3px solid green;
+			}
+			
+			blockquote blockquote blockquote {
+				border-left: 3px solid grey;
+			}
+			
+			blockquote blockquote blockquote blockquote {
+				border-left: 3px solid orange;
+			}
+			
+			blockquote blockquote blockquote blockquote blockquote {
+				border-left: 3px solid yellow;
+			}
+			
+			blockquote blockquote blockquote blockquote blockquote blockquote {
+				border-left: 3px solid purple;
+			}
+			
+			article div.citation {
+				margin-left: 20px;
+			}
+			
+			article div.reblog {
+				border: 1px solid #eee;
+				font-size: 80%;
+				padding: 5px;
+			}
+			
+			article div.citation:before { 
+				content: '\21AA' 
+			}
+						
+			article dt {
+				font-weight: 700;
+			}
+						
+			article footer {
+				font-size: 70%;
+			}
+						
+			footer nav a.previous {
+				position: relative;
+				
+			}
+			
+			footer nav a.next {
+				float: right;
+			}
+			
+			footer nav a.previous:after {
+				content: '\0205F\021A4'
+			}
+			
+			footer nav a.next:after {
+				content: '\0205F\021A6'
+			}
+
+			footer nav {
+				margin-bottom: 40px;
+			}
+			
+			footer div.credit {
+				margin-top: 10px;
+				border-top: 1px solid #eee;
+				font-size: 70%;
+			}
+			
+			.clear {
+				clear: both;
+			}
+
+		</style>
+	</head>
+	<body class="nihilo">
+		<header>
+			<h1><a href="/">{Title}</a></h1>
+			<p id="description">{Description}</p>
+		</header>
+		
+		<div id="articles">
+			{block:Posts}
+				<article>
+				
+					{block:text}
+						<header>
+							<h1>{Title}</h1>
+							
+						</header>
+						<div>
+							{Body}
+						</div>
+					{/block:text}
+					
+					{block:Photo}
+						{block:HighRes}<a href="{PhotoURL}">{/block:HighRes}
+						<img src="{PhotoURL-500}" alt="{PhotoAlt}" />
+						{block:HighRes}</a>{/block:HighRes}
+						
+						{block:Caption}
+							<!-- caption in HTML5 is a serious ommission -->
+							<div class="caption">
+								{Caption}
+							</div>
+						{/block:Caption}
+					{/block:Photo}
+					
+					{block:Photoset}
+						<!-- It's annoying that Tumblr has different blocks for photos and photosets, they shouldn't be different -->
+						{Photoset-500}
+						
+						{block:Caption}
+							<!-- caption in HTML5 is a serious ommission -->
+							<div class="caption">
+								{Caption}
+							</div>
+						{/block:Caption}
+					{/block:Photoset}
+					
+					{block:Quote}
+						<q>{Quote}</q>
+						
+						{block:Source}
+							<!-- Tumblr should distinguish between source and commentary -->
+							<!-- HTML5 has a cite element but it's not appropriate in this case - http://www.w3.org/TR/html5/text-level-semantics.html#the-cite-element -->
+							<div class="citation">
+								{Source}
+							</div>
+						{/block:Source}
+					{/block:Quote}
+										
+					{block:Link}
+						<header>
+							<a href="{URL}" {Target}>{Name}</a>
+						</header>
+						
+						{block:Description}
+							<div>
+								{Description}
+							</div>
+						{/block:Description}
+					{/block:Link}
+					
+					{block:Chat}
+						<header>
+							<h1>{Title}</h1>
+						</header>
+						
+						{block:Lines}
+						<!-- the dialog element is way cool -->
+						<dialog>
+							{block:Label}
+							<dt>{Label}</dt>
+							{/block:Label}
+							<dd>{Line}</dd>
+						</dialog>
+						{/block:Lines}							
+					{/block:Chat}
+					
+					{block:Video}
+						{Video-500}
+						
+						{block:Caption}
+						<div>
+							{Caption}
+						</div>
+						{/block:Caption}
+					{/block:Video}
+					
+					{block:Audio}
+						{AudioPlayerBlack}
+						
+						{block:Caption}
+							<div>
+								{Caption}
+							</div>
+						{/block:Caption}
+					{/block:Audio}
+					
+					{block:RebloggedFrom} 
+					<div class="reblog">
+						<p><b>Note:</b>  This post is a reblog.  A reblog is a mash-up &#151; parts of the post are mine, parts were written by others.  It originated on <cite>{ReblogRootTitle}</cite> and was most recently reblogged from <cite>{ReblogParentTitle}</cite>.
+					</div>
+					{/block:RebloggedFrom} 
+
+					
+					<footer>
+						Posted to this Tumblr on <a href="{Permalink}"><time>{Month} {DayOfMonth}, {Year}</time></a>.  {block:NoteCount}<a href="{Permalink}" onclick="return showNotes('{PostNotesURL}','post #{PostID}');">{NoteCountWithLabel}</a> accumulated.{/block:NoteCount}
+					</footer>
+				</article>
+
+			
+			{/block:Posts}
+		</div> <!-- end #articles div -->
+		
+		<footer>
+			<nav>
+				{block:PreviousPage}
+					<a href="{PreviousPage}" class="previous" rel="prev">Previous Page</a>
+				{/block:PreviousPage}
+				
+				{block:NextPage}
+					<a href="{NextPage}" class="next" rel="next">Next Page</a>
+				{/block:NextPage}
+			</nav>
+			
+			<div class="clear"></div>
+			
+			<div class="credit">
+				<p>SemanticTheme for Tumblr developed by <a href="http://mhudack.com/">Mike Hudack</a></p>
+			</div>
+			
+		</footer>
+		
+	</body>
+</html>
