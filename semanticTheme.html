@@ -73,7 +73,7 @@
 			}
 						
 			header h1 {
-				font-family: {font:Header};
+				font-family: {font:Title};
 				font-weight: 800;
 				font-size: 350%;
 				margin-left: auto;
@@ -125,6 +125,10 @@
 				margin-top: 5px;
 				margin-bottom: 15px;
 			}
+						
+			article div.citation p:first-of-type:before {		
+				content: '\21AA\0205F' 
+			}
 			
 			blockquote {
 				border-left: 3px solid blue;
@@ -168,11 +172,7 @@
 				font-size: 80%;
 				padding: 5px;
 			}
-			
-			article div.citation:before { 
-				content: '\21AA' 
-			}
-						
+									
 			article dt {
 				font-weight: 700;
 			}
