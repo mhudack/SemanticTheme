@@ -93,11 +93,13 @@
 			}
 			
 			article { 
+				display: block;
 				border-bottom: 5px solid #eee;
 				margin-bottom: 40px;
 			}
 			
-			article footer {
+			article footer  {
+				display: block;
 				margin-top: 5px;
 				margin-bottom: 5px;
 				width: 100%;
@@ -113,8 +115,16 @@
 				padding-left: 5px;
 			}
 			
+			a ~ blockquote {
+				color: red;
+			}
+									
 			blockquote blockquote {
 				border-left: 3px solid green;
+			}
+			
+			blcokquote p blockquote p a:first-of-type {
+				color: green;
 			}
 			
 			blockquote blockquote blockquote {
@@ -185,6 +195,8 @@
 			.clear {
 				clear: both;
 			}
+			
+			{CustomCSS}
 
 		</style>
 	</head>
@@ -266,7 +278,7 @@
 						<!-- the dialog element is way cool -->
 						<dialog>
 							{block:Label}
-							<dt>{Label}</dt>
+							<dt>{Name} {Label}</dt>
 							{/block:Label}
 							<dd>{Line}</dd>
 						</dialog>
@@ -301,7 +313,13 @@
 
 					
 					<footer>
-						Posted to this Tumblr on <a href="{Permalink}"><time>{Month} {DayOfMonth}, {Year}</time></a>.  {block:NoteCount}<a href="{Permalink}" onclick="return showNotes('{PostNotesURL}','post #{PostID}');">{NoteCountWithLabel}</a> accumulated.{/block:NoteCount}
+						Posted to this Tumblr on <a href="{Permalink}" rel="bookmark"><time>{Month} {DayOfMonth}, {Year}</time></a>.  {block:NoteCount}<a href="{Permalink}" onclick="return showNotes('{PostNotesURL}','post #{PostID}');">{NoteCountWithLabel}</a> 
+						
+						{block:Audio}
+							and {PlayCountWithLabel}  
+						{/block:Audio}
+						
+						accumulated.{/block:NoteCount}
 					</footer>
 				</article>
 
