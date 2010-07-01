@@ -27,6 +27,8 @@
 		<meta name="font:Body" content="Cardo,Helvetica, Verdana, sans-serif" />
 		<meta name="color:Background" content="#fff" />
 		<meta name="color:Text" content="#000" />
+		<meta name="color:link" content="#336699" />
+		<meta name="color:visitedLink" content="#663366" />
 		
 		<!-- End Tumblr customization cues -->
         
@@ -58,7 +60,7 @@
 				color: {color:text};
 				margin-left: auto;
 				margin-right: auto;
-				font-size: 10pt;
+				font-size: 8pt;
 				font-family: {font:Body};
 				width: 500px;
 				padding-bottom: 40px;
@@ -66,6 +68,14 @@
 			
 			img { 
 				border: 0px;
+			}
+			
+			a:link {
+				color: {color:Link}
+			}
+			
+			a:visited {
+				color: {color:visitedLink}
 			}
 			
 			.digitDialog {
@@ -76,10 +86,13 @@
 				font-family: {font:Title};
 				font-weight: 800;
 				font-size: 350%;
-				margin-left: auto;
-				margin-right: auto;
-				margin-bottom: 5px;
-				width: 500px;
+				display: inline;
+				margin-right: 10px;
+			}
+			
+			header #description {
+				font-size: 110%;
+				display: inline;
 			}
 			
 			header h1 a {
@@ -87,21 +100,20 @@
 				color: black;
 			}
 			
+			body header {
+				display: block;
+				border-bottom: 1px solid #eee;
+				margin-top: 10px;
+				padding-bottom: 10px;
+				margin-bottom: 10px;
+				width: 500px;
+			}
+			
 			article header h1, article header a {
 				font-weight: 800;
 				font-size: 150%;
 			}
 			
-			header #description {
-				margin-left: auto;
-				margin-right: auto;
-				width: 500px;
-				margin-top: 10px;
-				margin-bottom: 15px;
-				font-size: 90%;
-				font-style: italic;
-				border-bottom: 1px solid #eee;
-			}
 			
 			#articles {
 				width: 500px;
@@ -114,10 +126,16 @@
 				margin-bottom: 40px;
 			}
 			
-			article footer  {
+			article header {
+				border: 0px;
+			}
+			
+			article footer {
 				display: block;
 				margin-top: 5px;
 				margin-bottom: 5px;
+				font-size: 90%;
+				line-height: 180%;
 				width: 100%;
 			}
 			
@@ -130,15 +148,19 @@
 				content: '\21AA\0205F' 
 			}
 			
+			article div.citation {
+				margin-left: 20px;
+			}
+												
+			article dt {
+				font-weight: 700;
+			}
+			
 			blockquote {
 				border-left: 3px solid blue;
 				padding-left: 5px;
 			}
-			
-			a ~ blockquote {
-				color: red;
-			}
-									
+												
 			blockquote blockquote {
 				border-left: 3px solid green;
 			}
@@ -163,24 +185,7 @@
 				border-left: 3px solid purple;
 			}
 			
-			article div.citation {
-				margin-left: 20px;
-			}
-			
-			article div.reblog {
-				border: 1px solid #eee;
-				font-size: 80%;
-				padding: 5px;
-			}
-									
-			article dt {
-				font-weight: 700;
-			}
-						
-			article footer {
-				font-size: 70%;
-			}
-						
+							
 			footer nav a.previous {
 				position: relative;
 				
@@ -219,7 +224,7 @@
 	<body class="nihilo">
 		<header>
 			<h1><a href="/">{Title}</a></h1>
-			<p id="description">{Description}</p>
+			<span id="description">{Description}</span>
 		</header>
 		
 		<div id="articles">
@@ -322,18 +327,10 @@
 					{/block:Audio}
 					
 					<!-- Render a tutorial on reblogs unless you're on a PermalinkPage, in which case notes will be readily apparent and self-explanatory -->
-					
-					{block:IndexPage} 
-					{block:RebloggedFrom} 
-					<div class="reblog">
-						<p><b>Note:</b>  This post is a reblog.  A reblog is a mash-up &#151; parts of the post are mine, parts were written by others.  It originated on <cite>{ReblogRootTitle}</cite> and was most recently reblogged from <cite>{ReblogParentTitle}</cite>.
-					</div>
-					{/block:RebloggedFrom} 
-					{/block:IndexPage} 
-					
+										
 					{block:PostNotes} 
 					
-					<h3>Notes about this post from the Tumblr community:</h3>
+						<h3>Notes about this post from the Tumblr community:</h3>
 					
 						{PostNotes}
 					
@@ -347,6 +344,11 @@
 						{/block:Audio}
 						
 						accumulated.{/block:NoteCount}
+						
+						{block:RebloggedFrom} 
+							<br />
+							<b>Please Note: </b> The above post is a <a href="http://sethgodin.typepad.com/seths_blog/2007/03/definition_mash.html">mashup</a>.  I may not agree with all of it.
+						{/block:RebloggedFrom}
 					</footer>
 				</article>
 
