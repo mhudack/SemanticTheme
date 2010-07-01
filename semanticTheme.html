@@ -95,7 +95,7 @@
 				display: inline;
 			}
 			
-			header h1 a {
+			header h1 a, header h1 a:visited {
 				text-decoration: none;
 				color: black;
 			}
@@ -143,8 +143,15 @@
 				margin-top: 5px;
 				margin-bottom: 15px;
 			}
-						
-			article div.citation p:first-of-type:before {		
+			
+			/**
+				Really annoying that sometimes first element in a citation is a p, sometimes it's an a.  Who's generating this markup?
+			*/
+			article div.citation > p:first-child:before {		
+				content: '\21AA\0205F' 
+			}
+			
+			article div.citation > a:first-child:before {		
 				content: '\21AA\0205F' 
 			}
 			
