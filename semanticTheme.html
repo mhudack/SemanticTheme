@@ -13,13 +13,19 @@
         
         <!-- Dojo seems cool -->
 		<script src="http://ajax.googleapis.com/ajax/libs/dojo/1.4/dojo/dojo.xd.js" type="text/javascript" djConfig="parseOnLoad: true"></script>
-		
-		
 
 		<!-- for the Internet Exploder -->
 		<!--[if lt IE 9]>
 		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 		<![endif]-->
+		
+		<!-- Tumblr customization cues -->
+		<meta name="font:Title" content="Helvetica, Verdana, sans-serif" />
+		<meta name="font:Body" content="Helvetica, Verdana, sans-serif" />
+		<meta name="color:Background" content="#fff" />
+		<meta name="color:Text" content="#000" />
+		
+		<!-- End Tumblr customization cues -->
         
         <script type="text/javascript">
         
@@ -45,11 +51,12 @@
         
 		<style type="text/css">
 			body {
-				background-color: white;
+				background-color: {color:Background};
+				color: {color:text};
 				margin-left: auto;
 				margin-right: auto;
 				font-size: 10pt;
-				font-family: Helvetica, Verdana, sans-serif;
+				font-family: {font:Body},
 				width: 500px;
 				padding-bottom: 40px;
 			}
@@ -309,12 +316,23 @@
 						{/block:Caption}
 					{/block:Audio}
 					
+					<!-- Render a tutorial on reblogs unless you're on a PermalinkPage, in which case notes will be readily apparent and self-explanatory -->
+					
+					{block:IndexPage} 
 					{block:RebloggedFrom} 
 					<div class="reblog">
 						<p><b>Note:</b>  This post is a reblog.  A reblog is a mash-up &#151; parts of the post are mine, parts were written by others.  It originated on <cite>{ReblogRootTitle}</cite> and was most recently reblogged from <cite>{ReblogParentTitle}</cite>.
 					</div>
 					{/block:RebloggedFrom} 
-
+					{/block:IndexPage} 
+					
+					{block:PostNotes} 
+					
+					<h3>Notes about this post from the Tumblr community:</h3>
+					
+						{PostNotes}
+					
+					{/block:PostNotes} 
 					
 					<footer>
 						Posted to this Tumblr on <a href="{Permalink}" rel="bookmark"><time>{Month} {DayOfMonth}, {Year}</time></a>.  {block:NoteCount}<a href="{Permalink}" onclick="return showNotes('{PostNotesURL}','post #{PostID}');">{NoteCountWithLabel}</a> 
