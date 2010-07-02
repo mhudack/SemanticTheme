@@ -4,18 +4,19 @@
 
 <html lang="en" dir="ltr">
 	<head>
-		<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/dojo/1.4/dijit/themes/nihilo/nihilo.css" />
-
 		<title>{Title}</title>
 		<meta charset="utf-8" />
 		<link rel="shortcut icon" href="{Favicon}">
 		<link rel="alternate" type="application/rss+xml" href="{RSS}">
+		
+		<!-- Meta -->
         {block:Description}
             <meta name="description" content="{MetaDescription}" />
         {/block:Description}
         
         <!-- Dojo seems cool -->
 		<script src="http://ajax.googleapis.com/ajax/libs/dojo/1.4/dojo/dojo.xd.js" type="text/javascript" djConfig="parseOnLoad: true"></script>
+		<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/dojo/1.4/dijit/themes/nihilo/nihilo.css" />
 		
 		<!-- Making the Web pretty -->
 		<link href=' http://fonts.googleapis.com/css?family=Cantarell:regular,bold' rel='stylesheet' type='text/css'>
@@ -32,6 +33,7 @@
 		<meta name="color:Text" content="#000" />
 		<meta name="color:link" content="#336699" />
 		<meta name="color:visitedLink" content="#663366" />
+		<meta name="text:Google Analytics Code" content="" />
 		
 		<!-- End Tumblr customization cues -->
         
@@ -57,7 +59,7 @@
         	}
         </script>
         
-		<style type="text/css">
+		<style type="text/css" media="screen, handheld">
 			body {
 				background-color: {color:Background};
 				color: {color:text};
@@ -67,6 +69,7 @@
 				font-family: {font:Body};
 				width: 500px;
 				padding-bottom: 40px;
+				line-height: 1.4;
 			}
 			
 			img { 
@@ -91,6 +94,7 @@
 				font-size: 350%;
 				display: inline;
 				margin-right: 10px;
+				line-height: 0.7;
 			}
 			
 			header #description {
@@ -382,6 +386,10 @@
 			</div>
 			
 		</footer>
+		
+		{block:IfGoogle Analytics Code}
+			{text:Google Analytics Code}
+		{/block:IfGoogle Analytics Code}
 		
 	</body>
 </html>
