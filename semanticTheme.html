@@ -60,7 +60,7 @@
 				color: {color:text};
 				margin-left: auto;
 				margin-right: auto;
-				font-size: 8pt;
+				font-size: 9pt;
 				font-family: {font:Body};
 				width: 500px;
 				padding-bottom: 40px;
@@ -134,7 +134,7 @@
 				display: block;
 				margin-top: 5px;
 				margin-bottom: 5px;
-				font-size: 90%;
+				font-size: 80%;
 				line-height: 180%;
 				width: 100%;
 			}
@@ -332,9 +332,7 @@
 							</div>
 						{/block:Caption}
 					{/block:Audio}
-					
-					<!-- Render a tutorial on reblogs unless you're on a PermalinkPage, in which case notes will be readily apparent and self-explanatory -->
-										
+															
 					{block:PostNotes} 
 					
 						<h3>Notes about this post from the Tumblr community:</h3>
@@ -354,7 +352,7 @@
 						
 						{block:RebloggedFrom} 
 							<br />
-							<b>Please Note: </b> The above post is a <a href="http://sethgodin.typepad.com/seths_blog/2007/03/definition_mash.html">mashup</a>.  I may not agree with all of it.
+							<b>Please Note: </b> The above post is a <a href="http://sethgodin.typepad.com/seths_blog/2007/03/definition_mash.html">mashup</a> that started on <cite><a href="{ReblogRootName}">{ReblogRootTitle}</a></cite>. I may not agree with all of it.
 						{/block:RebloggedFrom}
 					</footer>
 				</article>
