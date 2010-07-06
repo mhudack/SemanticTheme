@@ -39,6 +39,10 @@
         
         <script type="text/javascript">
         
+        	window.onload = function() {
+        		colorQuotes();
+        	}
+        
         	dojo.require("dijit.Dialog");
         
         	function showNotes(url,title) {        		
@@ -57,9 +61,39 @@
         		return false;
         		
         	}
+        	
+        	function colorQuotes() {
+        	
+				var blocks = document.getElementsByTagName('blockquote');
+				
+				for(var i = 0; i < blocks.length; i++) {
+					// Get our parent element so we can see if we have a credit associated with us
+					var parent = blocks[i].parentElement;
+					// loop through siblings
+					for(var ii = 0; ii < parent.children.length; ii++) {
+						// See if any of our siblings are paragraphs
+						if(parent.children[ii] == '[object HTMLParagraphElement]') {
+							for(var iii = 0; iii < parent.children[ii].children.length; iii++) {
+								var e = parent.children[ii].children[iii];
+								// test for link
+								if(e.href) {
+									// Get blockquote border color
+									var color = document.defaultView.getComputedStyle(blocks[i],null).getPropertyValue('border-left-color');
+									// Set it and forget it if it's got a colon at the end
+								
+									if(e.parentElement.innerHTML.match(/:$/)) {
+										e.style.color = color;
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+
         </script>
         
-		<style type="text/css" media="screen, handheld">
+		<style type="text/css" media="screen, handheld, print">
 			body {
 				background-color: {color:Background};
 				color: {color:text};
