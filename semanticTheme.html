@@ -252,10 +252,20 @@
 				margin-bottom: 40px;
 			}
 			
-			footer div.credit {
-				margin-top: 10px;
+			footer #search {
 				border-top: 1px solid #eee;
-				font-size: 70%;
+				margin-top: 30px;
+				margin-bottom: 10px;
+			}
+			
+			footer #search input {
+				margin-top: 30px;
+			}
+			
+			footer div.credit {
+				margin-top: 30px;
+				border-top: 1px solid #eee;
+				font-size: 90%;
 			}
 			
 			.clear {
@@ -412,8 +422,16 @@
 			
 			<div class="clear"></div>
 			
+			<div id="search">
+				<form action="/search" method="get">
+    				<input type="text" name="q" value="{SearchQuery}"/>
+   					<input type="submit" value="Search this Tumblr"/>
+				</form>
+
+			</div>
+			
 			<div class="credit">
-				<p>SemanticTheme for Tumblr developed by <a href="http://mhudack.com/">Mike Hudack</a></p>
+				<p><a href="http://www.tumblr.com/theme/11568">SemanticTheme for Tumblr</a> developed by <a href="http://mhudack.com/">Mike Hudack</a> and <a href="http://github.com/mhudack/SemanticTheme">available on GitHub</a>.</p>
 			</div>
 			
 		</footer>
