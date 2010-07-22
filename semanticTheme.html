@@ -260,6 +260,7 @@
 			
 			footer #search input {
 				margin-top: 30px;
+				width: 250px;
 			}
 			
 			footer div.credit {
@@ -424,8 +425,9 @@
 			
 			<div id="search">
 				<form action="/search" method="get">
-    				<input type="text" name="q" value="{SearchQuery}"/>
-   					<input type="submit" value="Search this Tumblr"/>
+    				<input type="search" name="q" value="{SearchQuery}" placeholder="Search this Tumblr" autocomplete="on" />
+    				
+    				<input type="submit" value="Go" />
 				</form>
 
 			</div>
