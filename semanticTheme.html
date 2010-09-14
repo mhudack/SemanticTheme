@@ -30,7 +30,6 @@
 		<meta name="color:Text" content="#000" />
 		<meta name="color:link" content="#336699" />
 		<meta name="color:visitedLink" content="#663366" />
-		<meta name="text:Google Analytics Code" content="" />
 		<meta name="image:Background" content="" />
 		
 		<!-- End Tumblr customization cues -->
@@ -120,19 +119,31 @@
 			.digitDialog {
 				background-color: #000;
 			}
+			
+			header {
+				margin: 0;
+				display: block;
+				height: 100px;
+				width: 500px;
+			}
 						
 			header h1 {
 				font-family: {font:Title};
 				font-weight: 800;
-				font-size: 350%;
-				display: inline;
-				margin-right: 10px;
-				line-height: 0.9;
+				font-size: 40px;
+				line-height: 45px;
+				height: 50px;
+				width: 100%;
+				display: block;
+				margin: 0;
 			}
 			
 			header #description {
 				font-size: 110%;
-				display: inline;
+				height: 50px;
+				border: 1px solid red;
+				width: 100%;
+				margin: 0;
 			}
 			
 			header h1 a, header h1 a:visited {
@@ -285,7 +296,7 @@
 	<body class="nihilo">
 		<header>
 			<h1><a href="/">{Title}</a></h1>
-			<span id="description">{Description}</span>
+			<div id="description">{Description}</div>
 		</header>
 		
 		<div id="articles">
