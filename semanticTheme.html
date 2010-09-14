@@ -119,15 +119,17 @@
 			.digitDialog {
 				background-color: #000;
 			}
-			
-			header {
+
+			#masthed {
 				margin: 0;
 				display: block;
 				height: 100px;
 				width: 500px;
+				margin-top: -9px;
+				border-bottom: 1px solid #eee;
 			}
 						
-			header h1 {
+			#masthed h1 {
 				font-family: {font:Title};
 				font-weight: 800;
 				font-size: 40px;
@@ -137,11 +139,10 @@
 				display: block;
 				margin: 0;
 			}
-			
-			header #description {
+					
+			body header #description {
 				font-size: 110%;
 				height: 50px;
-				border: 1px solid red;
 				width: 100%;
 				margin: 0;
 			}
@@ -150,22 +151,13 @@
 				text-decoration: none;
 				color: black;
 			}
-			
-			body header {
-				display: block;
-				border-bottom: 1px solid #eee;
-				margin-top: 10px;
-				padding-bottom: 10px;
-				margin-bottom: 10px;
-				width: 500px;
-			}
-			
+						
 			article header h1, article header a, article header a:visited {
 				font-weight: 800;
-				font-size: 150%;
+				font-size: 25px;
+				display: inline;
 			}
-			
-			
+						
 			#articles {
 				width: 500px;
 				margin-top: 50px;
@@ -173,8 +165,12 @@
 			
 			article { 
 				display: block;
-				border-bottom: 1px solid #999;
-				margin-bottom: 40px;
+				border-bottom: 1px solid #eee;
+				margin-bottom: 50px;
+			}
+			
+			article div.caption {
+				margin: 0;
 			}
 			
 			article header {
@@ -216,6 +212,7 @@
 			
 			blockquote {
 				border-left: 3px solid #8B8989;
+				margin-left: 50px;
 				padding-left: 5px;
 			}
 												
@@ -270,17 +267,34 @@
 			
 			footer #search {
 				border-top: 1px solid #eee;
-				margin-top: 30px;
-				margin-bottom: 10px;
+				margin: 0;
+				width: 500px;
+				height: 100px;
+			}
+			
+			footer #search form {
+				margin-left: 50px;
+				margin-right: 50px;
+				margin-top: 25px;
+				margin-bottom: 25px;
+				display: block;
+				height: 50px;
+				width: 400px;
 			}
 			
 			footer #search input.search {
-				margin-top: 30px;
-				width: 250px;
+				margin-top: 25px;
+				margin-bottom: 25px;
+				/* margin-left:  50px; */
+				padding: 0;
+				height: 50px;
+				width: 300px;
 			}
 			
 			footer div.credit {
-				margin-top: 30px;
+				height: 50px;
+				width: 500px;
+				margin: 0;
 				border-top: 1px solid #eee;
 				font-size: 90%;
 			}
@@ -294,7 +308,7 @@
 		</style>
 	</head>
 	<body class="nihilo">
-		<header>
+		<header id="masthed">
 			<h1><a href="/">{Title}</a></h1>
 			<div id="description">{Description}</div>
 		</header>
@@ -312,6 +326,16 @@
 							{Body}
 						</div>
 					{/block:Text}
+					
+					{block:Answer}
+						<header>
+							<h1>{Asker} asks "{Question}"</h1>
+						</header>
+						
+						<div>
+							{Answer}
+						</div>
+					{/block:Answer}
 					
 					{block:Photo}
 						{block:HighRes}<a href="{PhotoURL}">{/block:HighRes}
@@ -442,9 +466,7 @@
 			<div id="search">
 				<form action="/search" method="get">
     				<input type="search" class="search" name="q" value="{SearchQuery}" placeholder="Search this Tumblr" autocomplete="on" />
-    				
-    				<input type="submit" value="Find" />
-				</form>
+   				</form>
 
 			</div>
 			
