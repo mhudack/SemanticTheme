@@ -179,10 +179,11 @@
 			
 			article footer {
 				display: block;
+				width: 500px;
+				height: 50px;
 				margin-top: 5px;
 				margin-bottom: 5px;
 				font-size: 80%;
-				line-height: 180%;
 				width: 100%;
 			}
 			
@@ -291,6 +292,13 @@
 				width: 300px;
 			}
 			
+			#searchAssist {
+				margin-top: 50px;
+				width: 500px;
+				height: 50px;
+				font-weight: bold;
+			}
+			
 			footer div.credit {
 				height: 50px;
 				width: 500px;
@@ -312,6 +320,12 @@
 			<h1><a href="/">{Title}</a></h1>
 			<div id="description">{Description}</div>
 		</header>
+		
+		{block:SearchPage}	
+		<div id="searchAssist">
+			 {lang:Your search for SearchQuery returned SearchResultCount results 2} [<a href="/">x</a>]
+		</div>
+		{/block:SearchPage}
 		
 		<div id="articles">
 			{block:Posts}
@@ -340,7 +354,7 @@
 					{block:Photo}
 						{block:HighRes}<a href="{PhotoURL}">{/block:HighRes}
 						{LinkOpenTag}<img src="{PhotoURL-500}" alt="{PhotoAlt}" />{LinkCloseTag}
-						{block:HighRes}</a>{/block:HighRes}
+						{block:Hig  0-hRes}</a>{/block:HighRes}
 						
 						{block:Caption}
 							<!-- caption in HTML5 is a serious ommission -->
@@ -367,7 +381,7 @@
 						
 						{block:Source}
 							<!-- Tumblr should distinguish between source and commentary -->
-							<!-- HTML5 has a cite element but it's not appropriate in this case - http://www.w3.org/TR/html5/text-level-semantics.html#the-cite-element -->
+							<!-- HTML5 has a cite element but it's not appropriate in this case - http:// www.w3.org/TR/html5/text-level-semantics.html#the-cite-element -->
 							<div class="citation">
 								{Source}
 							</div>
@@ -441,8 +455,7 @@
 						
 						{block:RebloggedFrom} 
 							<br />
-							<b>Please Note: </b> The above is a <a href="http://www.tumblr.com/docs/en/dashboard">reblog</a> that originated on <cite><a href="{ReblogRootURL}">{ReblogRootTitle}</a></cite>. I may not agree with it.
-						{/block:RebloggedFrom}
+						{lang:Reblogged from ReblogRootName 2}							{/block:RebloggedFrom}
 					</footer>
 				</article>
 
@@ -453,11 +466,11 @@
 		<footer>
 			<nav>
 				{block:PreviousPage}
-					<a href="{PreviousPage}" class="previous" rel="prev">Previous Page</a>
+					<a href="{PreviousPage}" class="previous" rel="prev">{lang:Previous page}</a>
 				{/block:PreviousPage}
 				
 				{block:NextPage}
-					<a href="{NextPage}" class="next" rel="next">Next Page</a>
+					<a href="{NextPage}" class="next" rel="next">{lang:Next page}</a>
 				{/block:NextPage}
 			</nav>
 			
@@ -465,7 +478,7 @@
 			
 			<div id="search">
 				<form action="/search" method="get">
-    				<input type="search" class="search" name="q" value="{SearchQuery}" placeholder="Search this Tumblr" autocomplete="on" />
+    				<input type="search" class="search" name="q" value="{SearchQuery}" placeholder="{lang:Search}	" autocomplete="on" />
    				</form>
 
 			</div>
