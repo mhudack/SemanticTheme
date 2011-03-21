@@ -27,12 +27,9 @@
 		<!-- Tumblr customization cues -->
 		<meta name="font:Title" content="LeagueGothicRegular, 'League Gothic', arial, sans-serif;" />
 		<meta name="font:Body" content='"Lucida Grande", Verdana, Helvetica, sans-serif' />
-		<meta name="color:Background" content="#fff" />
+		<meta name="color:Post Background" content="#fff" />
 		<meta name="color:Text" content="#000" />
-		<meta name="color:link" content="#336699" />
-		<meta name="color:visitedLink" content="#663366" />
 		<meta name="image:Background" content="" />
-		<meta name="if:Enable Facebook Like" content="1" />
 		<meta name="if:Enable Profile Photo" content="0" />
 		
 		<!-- End Tumblr customization cues -->
@@ -95,14 +92,14 @@
         
 		<style type="text/css" media="screen, handheld, print">
 			body {
-				background-color: {color:Background};
+				background-color: #fff;
 				background-image: url('{image:Background}');
 				color: {color:text};
 				margin-left: auto;
 				margin-right: auto;
 				font-size: 9pt;
 				font-family: {font:Body};
-				width: 500px;
+				width: 510px;
 				padding-bottom: 40px;
 				line-height: 1.4;
 			}
@@ -112,11 +109,11 @@
 			}
 			
 			a:link {
-				color: {color:Link}
+				color: #336699;
 			}
 			
 			a:visited {
-				color: {color:visitedLink}
+				color: #4c7fb2;
 			}
 			
 			.digitDialog {
@@ -127,9 +124,8 @@
 				margin: 0;
 				display: block;
 				height: 120px;
-				width: 500px;
+				width: 510px;
 				margin-top: -9px;
-				border-bottom: 1px solid #eee;
 			}
 	
 			#masthed h1 {
@@ -168,13 +164,17 @@
 			}
 						
 			#articles {
-				width: 500px;
+				width: 510px;
 				margin-top: 50px;
 			}
 			
 			article { 
+				background-color: {color:Post Background};
+				padding: 5px;				
 				display: block;
-				border-bottom: 1px solid #eee;
+				-webkit-box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.03) inset, 0 0 0 1px rgba(0,0,0,0.15); 
+				-moz-box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.03) inset, 0 0 0 1px rgba(0,0,0,0.15); 
+				box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.03) inset, 0 0 0 1px rgba(0,0,0,0.15);
 				margin-bottom: 50px;
 			}
 			
@@ -185,15 +185,24 @@
 			article header {
 				border: 0px;
 			}
-			
+						
 			article footer {
 				display: block;
 				width: 500px;
-				height: 100px;
 				font-size: 11px;
 				margin-top: 25px;
+				margin-left: -5px;
+				margin-right: -5px;
+				margin-bottom: -5px;
+				padding: 5px;
+				color: #fff;
+				background-color: #838e99;
 			}
 			
+			article footer a:link, article footer a:visited {
+				color: #fff;
+			}
+						
 			article div {
 				margin-top: 5px;
 				margin-bottom: 25px;
@@ -261,22 +270,13 @@
 				float: right;
 			}
 			
-			footer nav a.previous:before {
-				content: '\021A4\0205F'
-			}
-			
-			footer nav a.next:after {
-				content: '\0205F\021A6'
-			}
-
 			footer nav {
 				margin-bottom: 40px;
 			}
 			
 			footer #search {
-				border-top: 1px solid #eee;
 				margin: 0;
-				width: 500px;
+				width: 510px;
 				height: 100px;
 			}
 			
@@ -301,14 +301,14 @@
 			
 			#searchAssist {
 				margin-top: 50px;
-				width: 500px;
+				width: 510px;
 				height: 50px;
 				font-weight: bold;
 			}
 			
 			footer div.credit {
 				height: 50px;
-				width: 500px;
+				width: 510px;
 				margin: 0;
 				border-top: 1px solid #eee;
 				font-size: 90%;
@@ -345,7 +345,6 @@
 					{block:Text}
 						<header>
 							<h1>{Title}</h1>
-							
 						</header>
 						<div>
 							{Body}
@@ -466,19 +465,8 @@
 						accumulated.{/block:NoteCount}  
 												
 						{block:RebloggedFrom} 
-						<br /><br />
-						{lang:Reblogged from ReblogRootName}.			{/block:RebloggedFrom}
-						
-											
-						{block:ifEnableFacebookLike}
-						
 						<br />
-						
-						<iframe src="http://www.facebook.com/widgets/like.php?href={Permalink}" scrolling="no" frameborder="0" style="border:none; width:500px; height:80px; margin-top: 25px;"></iframe>
-        
-        				{/block:ifEnableFacebookLike}
-
-						
+						{lang:Reblogged from ReblogRootName}.			{/block:RebloggedFrom}
 						
 					</footer>
 				</article>
