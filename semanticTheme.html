@@ -32,6 +32,7 @@
 		<meta name="color:visitedLink" content="#663366" />
 		<meta name="image:Background" content="" />
 		<meta name="if:Enable Facebook Like" content="1" />
+		<meta name="if:Enable Profile Photo" content="0" />
 		
 		<!-- End Tumblr customization cues -->
         
@@ -124,7 +125,7 @@
 			#masthed {
 				margin: 0;
 				display: block;
-				height: 100px;
+				height: 120px;
 				width: 500px;
 				margin-top: -9px;
 				border-bottom: 1px solid #eee;
@@ -139,6 +140,11 @@
 				width: 100%;
 				display: block;
 				margin: 0;
+			}
+			
+			#masthed img {
+				float: right;
+				margin: 10px;
 			}
 					
 			body header #description {
@@ -316,6 +322,9 @@
 	</head>
 	<body class="nihilo">
 		<header id="masthed">
+			{block:ifEnableProfilePhoto}
+				<img src="{PortraitURL-96}" alt="Profile photo" />
+			{/block:ifEnableProfilePhoto}
 			<h1><a href="/">{Title}</a></h1>
 			<div id="description">{Description}</div>
 		</header>
@@ -454,6 +463,7 @@
 						accumulated.{/block:NoteCount}  
 												
 						{block:RebloggedFrom} 
+						<br />
 						{lang:Reblogged from ReblogRootName 2}.			{/block:RebloggedFrom}
 						
 											
